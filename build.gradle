@@ -24,7 +24,6 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
 
     // Helpers
-    implementation 'xerces:xercesImpl:2.11.0'
     implementation 'com.fasterxml.jackson.core:jackson-databind:2.9.10'
 
     // Observability
