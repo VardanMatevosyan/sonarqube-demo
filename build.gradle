@@ -1,5 +1,6 @@
 plugins {
     id 'java'
+    id "org.sonarqube" version "7.0.1.6134"
     id 'org.springframework.boot' version '2.0.0.RELEASE'
     id 'io.spring.dependency-management' version '1.0.4.RELEASE'
 }
@@ -23,7 +24,7 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
 
     // Helpers
-    implementation 'xerces:xercesImpl:2.11.0'
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.9.10'
 
     // Observability
     implementation 'ch.qos.logback:logback-classic:1.2.3'
@@ -32,6 +33,13 @@ dependencies {
 
     // Test
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+sonar {
+    properties {
+        property "sonar.projectKey", "VardanMatevosyan_sonarqube-demo"
+        property "sonar.organization", "vardanmatevosyan"
+    }
 }
 
 tasks.named('test') {
