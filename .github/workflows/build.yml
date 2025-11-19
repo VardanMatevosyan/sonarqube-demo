@@ -7,6 +7,8 @@ on:
       - "release/*"
       - "hotfix/*"
       - "feature/*"
+      - "bugfix/*"
+      - "test*"
   pull_request:
 
 jobs:
