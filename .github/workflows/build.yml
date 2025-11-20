@@ -18,7 +18,7 @@ jobs:
         run: |
           BRANCH="${{ github.head_ref }}"
           echo "PR head ref: $BRANCH"
-          if [[ "$BRANCH" =~ ^(release/|hotfix/|feature/|bugfix/|test).* ]]; then
+          if [[ "$BRANCH" =~ ^(release/|hotfix/|feature/|bugfix/|test|main).* ]]; then
             echo "Allowed branch pattern: $BRANCH"
             exit 0
           else
