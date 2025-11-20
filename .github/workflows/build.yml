@@ -55,16 +55,15 @@ jobs:
         with:
           fetch-depth: 0
       - name: SonarQube Scan
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          SONAR_PROJECT_KEY: ${{ secrets.SONAR_PROJECT_KEY }}
-          SONAR_ORGANIZATION_KEY: ${{ secrets.SONAR_ORGANIZATION_KEY }}
-        uses: sonarsource/sonarcloud-github-action@master
+        uses: SonarSource/sonarqube-scan-action@v6.0.0
         with:
           args: >
-            -Dsonar.projectKey=$SONAR_PROJECT_KEY
-            -Dsonar.organization=$SONAR_ORGANIZATION_KEY
-            -Dsonar.host.url=https://sonarcloud.io
+            -valid=true 
+            -Dsonar.projectKey="$SONAR_PROJECT_KEY"
+            -Dsonar.organization="$SONAR_ORGANIZATION_KEY"
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
 #      - name: Cache SonarQube packages
 #        uses: actions/cache@v4
 #        with:
