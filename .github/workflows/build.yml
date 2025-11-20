@@ -4,11 +4,6 @@ on:
   push:
     branches:
       - 'main'
-      - "release/*"
-      - "hotfix/*"
-      - "feature/*"
-      - "bugfix/*"
-      - "test*"
   pull_request:
     branches:
       - main
