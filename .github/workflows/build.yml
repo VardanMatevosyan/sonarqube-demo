@@ -4,16 +4,32 @@ on:
   push:
     branches:
       - 'main'
-#      - "release/*"
-#      - "hotfix/*"
-#      - "feature/*"
-#      - "bugfix/*"
-#      - "test*"
+      - "release/*"
+      - "hotfix/*"
+      - "feature/*"
+      - "bugfix/*"
+      - "test*"
   pull_request:
     branches:
       - main
 
 jobs:
+  branch-name-policy:
+    name: branch-name-policy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check PR source branch name
+        shell: bash
+        run: |
+          BRANCH="${{ github.head_ref }}"
+          echo "PR head ref: $BRANCH"
+          if [[ "$BRANCH" =~ ^(release/|hotfix/|feature/|bugfix/|test).* ]]; then
+            echo "Allowed branch pattern: $BRANCH"
+            exit 0
+          else
+            echo "::error ::Branch name '$BRANCH' is not allowed to merge into main. Allowed patterns: release/*, hotfix/*, feature/*, bugfix/*, test*"
+            exit 1
+          fi
   build:
     name: Build
     runs-on: ubuntu-latest
