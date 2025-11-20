@@ -1,8 +1,8 @@
 plugins {
     id 'java'
-    id "org.sonarqube" version "7.0.1.6134"
-    id 'org.springframework.boot' version '2.0.0.RELEASE'
-    id 'io.spring.dependency-management' version '1.0.4.RELEASE'
+    id "org.sonarqube" version "7.0.0.6105"
+    id 'org.springframework.boot' version '3.0.0'
+    id 'io.spring.dependency-management' version '1.1.7'
 }
 
 group = 'com.practice'
@@ -11,7 +11,7 @@ description = 'sonarqube_demo'
 
 java {
     toolchain {
-        languageVersion = JavaLanguageVersion.of(11)
+        languageVersion = JavaLanguageVersion.of(17)
     }
 }
 
@@ -24,13 +24,13 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
 
 
-    // Helpers
+    // Helpers vulnerable libraries
     implementation 'com.fasterxml.jackson.core:jackson-databind:2.9.10'
 
 
     // Observability
-    implementation 'ch.qos.logback:logback-classic:1.2.3'
-    implementation 'ch.qos.logback:logback-core:1.2.3'
+    implementation 'ch.qos.logback:logback-classic:1.5.13'
+    implementation 'ch.qos.logback:logback-core:1.5.19'
 
 
     // Test
