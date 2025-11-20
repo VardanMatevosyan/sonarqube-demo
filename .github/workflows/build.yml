@@ -16,7 +16,11 @@ jobs:
       - name: Check PR source branch name
         shell: bash
         run: |
-          BRANCH="${{ github.head_ref }}"
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            BRANCH="${{ github.head_ref }}"
+          else
+            BRANCH="${{ github.ref_name }}"
+          fi
           echo "PR head ref: $BRANCH"
           if [[ "$BRANCH" =~ ^(release/|hotfix/|feature/|bugfix/|test|main).* ]]; then
             echo "Allowed branch pattern: $BRANCH"
