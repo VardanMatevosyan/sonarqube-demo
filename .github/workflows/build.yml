@@ -33,7 +33,7 @@ jobs:
     name: Build
     runs-on: ubuntu-latest
     container:
-      image: eclipse-temurin:11-jdk
+      image: eclipse-temurin:17-jdk
     permissions:
       contents: read
       pull-requests: write
