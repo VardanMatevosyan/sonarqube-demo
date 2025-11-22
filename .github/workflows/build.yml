@@ -93,8 +93,7 @@ jobs:
 
       - name: Verify report exists
         run: |
-          pwd
-          ls -R .
+          ls -la .reports/jacoco/test
 
       - name: SonarQube Scan
         env:
