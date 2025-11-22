@@ -92,7 +92,7 @@ jobs:
           path: 'build/reports/jacoco/test/jacocoTestReport.xml'
 
       - name: Verify report exists
-        run: ls -l jacoco/test/
+        run: ls -l build/reports/jacoco/test/
 
       - name: SonarQube Scan
         env:
