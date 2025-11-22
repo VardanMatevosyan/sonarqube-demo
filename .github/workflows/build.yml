@@ -32,6 +32,9 @@ jobs:
   build:
     name: Build
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./app
     container:
       image: eclipse-temurin:17-jdk
     permissions:
@@ -49,6 +52,9 @@ jobs:
   test_and_coverage:
     name: Test and Coverage
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./app
     container:
       image: eclipse-temurin:17-jdk
     steps:
@@ -63,7 +69,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: test-coverage-report
-          path: 'coverage'
+          path: 'build'
           overwrite: true
           retention-days: 5
   sast:
@@ -72,6 +78,9 @@ jobs:
       - test_and_coverage
     name: SonarQube Scan
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./app
     steps:
       - name: Checkout source code to docker ubuntu container
         uses: actions/checkout@v4
@@ -89,7 +98,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: test-coverage-report
-          path: 'coverage'
+          path: .
 
       - name: Verify report exists
         run: |
