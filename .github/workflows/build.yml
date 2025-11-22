@@ -58,7 +58,7 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           fetch-depth: 0
       - name: Run tests with coverage
-        run: ./gradlew test jacocoTestReport
+        run: ./gradlew jacocoTestCoverageVerification
       - name: Upload test results
         uses: actions/upload-artifact@v4
         with:
