@@ -34,7 +34,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: ./app
+        working-directory: app
     container:
       image: eclipse-temurin:17-jdk
     permissions:
@@ -54,7 +54,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: ./app
+        working-directory: app
     container:
       image: eclipse-temurin:17-jdk
     steps:
@@ -80,7 +80,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: ./app
+        working-directory: app
     steps:
       - name: Checkout source code to docker ubuntu container
         uses: actions/checkout@v4
