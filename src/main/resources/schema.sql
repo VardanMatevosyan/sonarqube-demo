@@ -1,7 +1,7 @@
 CREATE TABLE users (
    id INT PRIMARY KEY,
-   username VARCHAR(255),
-   email VARCHAR(255)
+   username VARCHAR2(255),
+   email VARCHAR2(255)
 );
 
 INSERT INTO users(id, username, email)
