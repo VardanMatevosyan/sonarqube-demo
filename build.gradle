@@ -61,7 +61,7 @@ sonar {
         property "sonar.projectName", System.getenv("SONAR_PROJECT_NAME") ?: localProps["sonar.projectName"]
         property "soner.token", System.getenv("SONAR_TOKEN") ?: localProps["soner.token"]
         property "sonar.host.url", System.getenv("SONAR_HOST_URL") ?: localProps["sonar.host.url"]
-        property "sonar.coverage.exclusions", "**/config/,**/mapper/,**/model/,**/exception/"
+        property "sonar.coverage.exclusions", "**/config/**,**/mapper/**,**/model/**,**/exception/**"
     }
 }
 
