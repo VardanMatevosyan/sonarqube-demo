@@ -67,6 +67,9 @@ jobs:
           overwrite: true
           retention-days: 5
   sast:
+    needs:
+      - build
+      - test_and_coverage
     name: SonarQube Scan
     runs-on: ubuntu-latest
     steps:
