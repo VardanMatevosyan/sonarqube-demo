@@ -22,11 +22,10 @@ repositories {
 dependencies {
     // Spring boot runtime
     implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-jdbc'
 
-
-    // Helpers vulnerable libraries
-    implementation 'com.fasterxml.jackson.core:jackson-databind:2.9.10'
-
+    // Persistence H2 for demo (optional)
+    runtimeOnly 'com.h2database:h2'
 
     // Observability
     implementation 'ch.qos.logback:logback-classic:1.5.13'
@@ -35,12 +34,40 @@ dependencies {
 
     // Test
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+    // Annotation processing
+    compileOnly 'org.projectlombok:lombok:1.18.26'
+    annotationProcessor 'org.projectlombok:lombok:1.18.26'
+    implementation 'org.mapstruct:mapstruct:1.5.5.Final'
+    annotationProcessor 'org.mapstruct:mapstruct-processor:1.5.5.Final'
+}
+
+def localProps = new Properties()
+def localFile = file("gradle-local.properties")
+if (localFile.exists()) {
+    localProps.load(localFile.newDataInputStream())
 }
 
 sonar {
     properties {
-        property "sonar.projectKey", "VardanMatevosyan_sonarqube-demo"
-        property "sonar.organization", "vardanmatevosyan"
+//        property "sonar.projectKey", "VardanMatevosyan_sonarqube-demo"
+//        property "sonar.organization", "vardanmatevosyan"
+
+//        property "sonar.projectKey", System.getenv("SONAR_PROJECT_KEY") ?: "sonarqube-demo_key"
+//        property "sonar.organization", System.getenv("SONAR_ORGANIZATION_KEY") ?: "local-organization"
+//        property "sonar.projectName", System.getenv("SONAR_PROJECT_NAME") ?: "sonarqube-demo"
+//        property "soner.token", System.getenv("SONAR_TOKEN")
+//        property "sonar.host.url", System.getenv("SONAR_HOST_URL") ?: "http://localhost:9000"
+
+
+
+        property "sonar.projectKey", System.getenv("SONAR_PROJECT_KEY") ?: localProps["sonar.projectKey"]
+        property "sonar.organization", System.getenv("SONAR_ORGANIZATION_KEY") ?: localProps["sonar.organization"]
+        property "sonar.projectName", System.getenv("SONAR_PROJECT_NAME") ?: localProps["sonar.projectName"]
+        property "soner.token", System.getenv("SONAR_TOKEN") ?: localProps["soner.token"]
+        property "sonar.host.url", System.getenv("SONAR_HOST_URL") ?: localProps["sonar.host.url"]
+
+
     }
 }
 
