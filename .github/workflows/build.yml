@@ -92,7 +92,10 @@ jobs:
           path: 'build/reports/jacoco/test/jacocoTestReport.xml'
 
       - name: Verify report exists
-        run: ls -l build/reports/jacoco/test/
+        run: |
+          pwd
+          ls -R .
+          ls -l build/reports/jacoco/test
 
       - name: SonarQube Scan
         env:
@@ -102,5 +105,7 @@ jobs:
           SONAR_PROJECT_KEY: ${{ secrets.SONAR_PROJECT_KEY }}
           SONAR_PROJECT_NAME: ${{ secrets.SONAR_PROJECT_NAME }}
         run: |
-          ls -l build/reports/jacoco/test/
+          pwd
+          ls -R .
+          ls -l build/reports/jacoco/test
           ./gradlew sonar --info
