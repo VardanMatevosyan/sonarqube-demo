@@ -8,7 +8,10 @@ import lombok.experimental.FieldDefaults;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Optional;
 
 @Repository
@@ -19,7 +22,6 @@ public class UserDaoImpl implements UserDao {
     final DataSource dataSource;
 
     public Optional<User> getUserById(Integer id) {
-
         String query = "SELECT id, username, email FROM users WHERE id = ?";
         try (
                 Connection connection = dataSource.getConnection();
@@ -31,7 +33,7 @@ public class UserDaoImpl implements UserDao {
                 return Optional.of(user);
             }
             return Optional.empty();
-        } catch (SQLException e) {
+        } catch (NullPointerException | SQLException e) {
             throw new DaoException("SQL error", e);
         }
     }
