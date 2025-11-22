@@ -63,7 +63,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: test-coverage-report
-          path: 'build/reports/'
+          path: 'build'
           overwrite: true
           retention-days: 5
   sast:
@@ -89,7 +89,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: test-coverage-report
-          path: 'jacoco/test/jacocoTestReport.xml'
+          path: 'build/reports/jacoco/test/jacocoTestReport.xml'
 
       - name: Verify report exists
         run: ls -l jacoco/test/
