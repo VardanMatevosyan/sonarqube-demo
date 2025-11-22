@@ -46,6 +46,24 @@ jobs:
           fetch-depth: 0
       - name: Build project
         run: ./gradlew build -x test
+  test_and_coverage:
+    name: Test and Coverage
+    runs-on: ubuntu-latest
+    container:
+      image: eclipse-temurin:17-jdk
+    steps:
+      - name: Checkout source code to docker ubuntu container
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
+      - name: Run tests with coverage
+        run: ./gradlew test jacocoTestReport
+      - name: Upload test results
+        uses: actions/upload-artifact@v3
+        with:
+          name: test-results
+          path: ''
   sast:
     name: SonarQube Scan
     runs-on: ubuntu-latest
