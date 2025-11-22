@@ -63,7 +63,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: test-coverage-report
-          path: 'build'
+          path: 'coverage'
           overwrite: true
           retention-days: 5
   sast:
@@ -89,13 +89,12 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: test-coverage-report
-          path: ''
+          path: 'coverage'
 
       - name: Verify report exists
         run: |
           pwd
           ls -R .
-          ls -l build/reports/jacoco/test
 
       - name: SonarQube Scan
         env:
@@ -104,8 +103,4 @@ jobs:
           SONAR_ORGANIZATION_KEY: ${{ secrets.SONAR_ORGANIZATION_KEY }}
           SONAR_PROJECT_KEY: ${{ secrets.SONAR_PROJECT_KEY }}
           SONAR_PROJECT_NAME: ${{ secrets.SONAR_PROJECT_NAME }}
-        run: |
-          pwd
-          ls -R .
-          ls -l build/reports/jacoco/test
-          ./gradlew sonar --info
+        run: ./gradlew sonar --info
