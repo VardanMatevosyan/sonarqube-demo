@@ -86,10 +86,10 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: test-coverage-report
-          path: build/reports/
+          path: 'jacoco/test/jacocoTestReport.xml'
 
       - name: Verify report exists
-        run: ls -l build/reports/jacoco/test/
+        run: ls -l jacoco/test/
 
       - name: SonarQube Scan
         env:
