@@ -55,11 +55,13 @@ sonar {
     properties {
         property "sonar.coverage.jacocoxml.import", "true"
         property "sonar.java.coveragePlugin", "jacoco"
-        property "sonar.coverage.jacoco.xmlReportPaths", "reports/jacoco/test/jacocoTestReport.xml"
+        property "sonar.coverage.jacoco.xmlReportPaths",
+                System.getenv("SONAR_COVERAGE_JACOCO_XML_REPORT_PATH")
+                ?: localProps["sonar.coverage.jacoco.xmlReportPaths"]
         property "sonar.projectKey", System.getenv("SONAR_PROJECT_KEY") ?: localProps["sonar.projectKey"]
         property "sonar.organization", System.getenv("SONAR_ORGANIZATION_KEY") ?: localProps["sonar.organization"]
         property "sonar.projectName", System.getenv("SONAR_PROJECT_NAME") ?: localProps["sonar.projectName"]
-        property "soner.token", System.getenv("SONAR_TOKEN") ?: localProps["soner.token"]
+        property "sonar.token", System.getenv("SONAR_TOKEN") ?: localProps["sonar.token"]
         property "sonar.host.url", System.getenv("SONAR_HOST_URL") ?: localProps["sonar.host.url"]
         property "sonar.coverage.exclusions", "**/config/**,**/mapper/**,**/model/**,**/exception/**"
     }
